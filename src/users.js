@@ -19,9 +19,7 @@ constructor(props){
 }
 
     state = {
-    users : [{
-        username:'rahul'
-    }],
+    users : null,
     showSpinner:false
 }
 
@@ -59,6 +57,17 @@ constructor(props){
     
     
     render() {
+        
+        let users  = <Spinner/>
+   
+       if(this.state.users){
+        users = Object.keys(this.state.users)
+        .map((igkey)=>{
+        return <li key={igkey}>{this.state.users[igkey].username}</li>
+        })
+
+           
+       }
 
       
 
@@ -69,6 +78,7 @@ return (
             <div>
 
                 <Form submit = {this.submitUserHandler} spinner = {this.state.showSpinner}/>
+    {users}
                 
                 
                 
